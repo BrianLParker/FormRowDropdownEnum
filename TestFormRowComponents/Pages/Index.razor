@@ -16,14 +16,15 @@
       </div>
       <FormRowText PropertyName="@nameof(Customer.Name)" @bind-Value="_customer.Name" Caption="Name" Icon="user" />
       <FormRowText PropertyName="@nameof(Customer.Email)" @bind-Value="_customer.Email" Icon="at" />
-      <FormRowDropdownEnum PropertyName="@nameof(Customer.Frequency)" T="Frequency" @bind-Value="_frequency" Icon="wave-sine" />
+      <FormRowDropdownEnum PropertyName="@nameof(Customer.Frequency)" @bind-Value="_customer.Frequency" Icon="wave-sine" Context="freq">
+          <option value="@freq">@freq</option>
+      </FormRowDropdownEnum>
       <div class="text-right">
         <input type="submit" class="btn btn-primary" value="Save" />
       </div>
     </EditForm>
   </div>
 </div>
-
 @code {
 
   readonly Customer _customer = new Customer {
@@ -31,9 +32,6 @@
     Email = "jim@spriggs.org",
     Frequency = Frequency.Monthly
   };
-
-  private int _frequency;
-  protected override void OnInitialized() => _frequency = (int)_customer.Frequency;
 
   private string _msg = "";
 

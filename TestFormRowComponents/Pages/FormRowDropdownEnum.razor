@@ -1,4 +1,4 @@
-﻿@typeparam T
+﻿@typeparam TEnum
 
 <div class="form-group row">
   <label for="@PropertyName" class="col-lg-2 col-form-label">@(Caption ?? PropertyName)</label>
@@ -8,14 +8,11 @@
         <i class="far fa-@Icon"></i>
       </span>
     </div>
-    <select class="form-control" name="@PropertyName" id="@PropertyName" value="@Value" @onchange="OnValueChanged">
-      @foreach (T v in Enum.GetValues(typeof(T)).Cast<T>()) {
-        if ((int)Enum.Parse(typeof(T), v.ToString()) == Value) {
-          <option value="@Convert.ToInt32(v)" selected>@Enum.GetName(typeof(T), v)</option>
-        } else {
-          <option value="@Convert.ToInt32(v)">@Enum.GetName(typeof(T), v)</option>
+    <select class="form-control" name="@PropertyName" id="@PropertyName" @bind="Value">
+        @foreach (var enumValue in EnumValues)
+        {
+            @ChildContent(enumValue)
         }
-      }
     </select>
   </div>
 </div>

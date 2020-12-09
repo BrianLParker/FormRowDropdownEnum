@@ -33,7 +33,7 @@ namespace TestFormRowComponents.Pages
         IEnumerable<TEnum> EnumValues => Enum.GetValues(typeof(TEnum)).Cast<TEnum>();
         protected override void OnInitialized()
         {
-            if (Value is not Enum) throw new ArgumentException("Value must be of type Enum");
+            if (Value is not Enum) throw new ArgumentException("Value must be of type Enum");            
         }
     }
 }

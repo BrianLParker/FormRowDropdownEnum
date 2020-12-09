@@ -9,9 +9,17 @@
       </span>
     </div>
     <select class="form-control" name="@PropertyName" id="@PropertyName" @bind="Value">
+
         @foreach (var enumValue in EnumValues)
         {
-            @ChildContent(enumValue)
+            if (ChildContent == default)
+            {
+                <option value="@enumValue">@enumValue</option>
+            }
+            else
+            {
+                @ChildContent(enumValue)
+            }
         }
     </select>
   </div>
